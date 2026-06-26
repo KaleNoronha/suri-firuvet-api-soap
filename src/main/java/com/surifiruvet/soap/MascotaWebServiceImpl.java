@@ -31,7 +31,7 @@ public class MascotaWebServiceImpl implements MascotaWebService {
 
     @Override
     public List<Mascota> obtenerMascotasPorCliente(Long idCliente) {
-        return em.createQuery("FROM Mascota m WHERE m.cliente.id = :idCliente", Mascota.class)
+        return em.createQuery("FROM Mascota m WHERE m.clienteEntity.id = :idCliente", Mascota.class)
                 .setParameter("idCliente", idCliente)
                 .getResultList();
     }
@@ -47,8 +47,8 @@ public class MascotaWebServiceImpl implements MascotaWebService {
 
         Mascota mascota = new Mascota();
         mascota.setNombMas(nombMas);
-        mascota.setTipoMascota(tipoMascota);
-        mascota.setCliente(cliente);
+        mascota.setTipoMascotaEntity(tipoMascota);
+        mascota.setClienteEntity(cliente);
         mascota.setApodos(apodos);
         mascota.setAlergias(alergias);
         em.persist(mascota);
